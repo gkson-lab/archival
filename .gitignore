@@ -1,6 +1,6 @@
 /target
 node_modules
-dist
+/apps/desktop/dist
 *.log
 .DS_Store
 .vite
