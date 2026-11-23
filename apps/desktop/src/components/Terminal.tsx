@@ -17,7 +17,7 @@ export function Terminal({ runId, onInfo, interactive }: { runId: string; onInfo
   cb.current = onInfo;
   useEffect(() => {
     const term = new XTerm({
-      fontFamily: '"Recursive Variable", ui-monospace, monospace',
+      fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace',
       fontSize: 13,
       lineHeight: 1.25,
       cursorBlink: false,
@@ -75,7 +75,7 @@ export function Terminal({ runId, onInfo, interactive }: { runId: string; onInfo
 export function OutputTerminal({ feed }: { feed: (write: (s: string) => void) => () => void }) {
   const host = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const term = new XTerm({ fontFamily: '"Recursive Variable", ui-monospace, monospace', fontSize: 13, convertEol: true, theme: theme(), disableStdin: true });
+    const term = new XTerm({ fontFamily: 'ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace', fontSize: 13, convertEol: true, theme: theme(), disableStdin: true });
     const fit = new FitAddon();
     term.loadAddon(fit);
     term.open(host.current!);

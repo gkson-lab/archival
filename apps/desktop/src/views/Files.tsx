@@ -234,7 +234,9 @@ function FileView({ path }: { path: string }) {
   const [saving, setSaving] = useState(false);
   const ext = extOf(path);
   const previewable = ["md", "markdown", "html", "htm", "svg"].includes(ext) || (ext === "json" && !!data?.text && /"\$value"|"\$type"/.test(data.text));
-  const [mode, setMode] = useState<Mode>(previewable ? "read" : "edit");
+  const [mode, setMode] = useState<Mode>("read");
+  // pick the default once the file has loaded: preview for markdown, html, svg and tokens
+  useEffect(() => { if (data) setMode(previewable ? "read" : "edit"); }, [data?.path, previewable]);
   useEffect(() => { setText(null); }, [path, data?.text]);
   const dirty = text != null && text !== data?.text;
   const save = async () => {
