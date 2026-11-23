@@ -58,6 +58,10 @@ jobs:
           kill -0 $PID
           screencapture -x shots/macos.png
           kill $PID
+          cat shots/app.log
+          grep -q "ui connected" shots/app.log
+          sips -Z 1000 shots/macos.png --out shots/small.png
+          echo "screenshot-base64:$(base64 -i shots/small.png | tr -d '\n')"
 
       - name: launch on linux
         if: runner.os == 'Linux'
@@ -73,6 +77,10 @@ jobs:
           kill $PID
           SH
           xvfb-run -a -s "-screen 0 1440x900x24" sh launch.sh
+          cat shots/app.log
+          grep -q "ui connected" shots/app.log
+          convert shots/linux.png -resize 1000x shots/small.png
+          echo "screenshot-base64:$(base64 -w0 shots/small.png)"
 
       - uses: actions/upload-artifact@v4
         if: always()

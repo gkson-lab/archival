@@ -9,8 +9,12 @@ use tauri::{Manager, RunEvent};
 
 struct Launch(Option<String>);
 
+static CONNECTED: std::sync::Once = std::sync::Once::new();
+
 #[tauri::command]
 async fn api(method: String, params: Value, svc: tauri::State<'_, Service>, launch: tauri::State<'_, Launch>) -> Result<Value, String> {
+    // printed once so a launch check can tell the window loaded and reached the backend
+    CONNECTED.call_once(|| println!("archival: ui connected"));
     if method == "app.launch" {
         return Ok(json!({ "open": launch.0 }));
     }
