@@ -11,4 +11,3 @@ serde_json.workspace = true
 octocrab.workspace = true
 reqwest.workspace = true
 keyring.workspace = true
-tokio.workspace = true

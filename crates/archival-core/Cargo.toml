@@ -5,7 +5,6 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-anyhow.workspace = true
 thiserror.workspace = true
 serde.workspace = true
 serde_json.workspace = true
@@ -18,7 +17,6 @@ uuid.workspace = true
 chrono.workspace = true
 zip.workspace = true
 mime_guess.workspace = true
-slug.workspace = true
 dirs.workspace = true
 
 [dev-dependencies]

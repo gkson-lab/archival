@@ -9,6 +9,11 @@ use serde::Serialize;
 use std::cell::Cell;
 use std::path::Path;
 
+// vendored libgit2 on windows needs the registry and security apis from advapi32
+#[cfg(windows)]
+#[link(name = "advapi32")]
+extern "system" {}
+
 #[derive(Debug, Clone, Default)]
 pub struct Auth {
     /// https token (github etc.). ssh remotes use the ssh agent.

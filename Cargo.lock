@@ -180,7 +180,6 @@ dependencies = [
 name = "archival-core"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "blake3",
  "chrono",
  "dirs 5.0.1",
@@ -189,7 +188,6 @@ dependencies = [
  "rusqlite",
  "serde",
  "serde_json",
- "slug",
  "tempfile",
  "thiserror 1.0.69",
  "uuid",
@@ -232,7 +230,6 @@ dependencies = [
  "reqwest 0.12.28",
  "serde",
  "serde_json",
- "tokio",
 ]
 
 [[package]]
