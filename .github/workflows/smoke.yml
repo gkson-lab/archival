@@ -54,7 +54,8 @@ jobs:
           mkdir -p shots
           target/release/archival-desktop > shots/app.log 2>&1 &
           PID=$!
-          sleep 20
+          for i in $(seq 1 60); do grep -q "ui connected" shots/app.log && break; sleep 1; done
+          sleep 4
           kill -0 $PID
           screencapture -x shots/macos.png
           kill $PID
@@ -71,7 +72,8 @@ jobs:
           cat > launch.sh <<'SH'
           target/release/archival-desktop > shots/app.log 2>&1 &
           PID=$!
-          sleep 20
+          for i in $(seq 1 60); do grep -q "ui connected" shots/app.log && break; sleep 1; done
+          sleep 4
           kill -0 $PID
           import -window root shots/linux.png
           kill $PID

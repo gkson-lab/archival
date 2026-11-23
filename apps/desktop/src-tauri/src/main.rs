@@ -40,6 +40,13 @@ fn main() {
     }
     let open = args.iter().position(|a| a == "--open").and_then(|i| args.get(i + 1).cloned());
 
+    // webkitgtk's dmabuf renderer shows a blank window on some gpus (often nvidia) and on
+    // virtual displays. turn it off unless the user chose otherwise.
+    #[cfg(target_os = "linux")]
+    if std::env::var_os("WEBKIT_DISABLE_DMABUF_RENDERER").is_none() {
+        std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+    }
+
     let svc = match Service::open(None) {
         Ok(s) => s,
         Err(e) => {
